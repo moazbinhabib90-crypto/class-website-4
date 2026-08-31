@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Class 8 Dashboard | Shinepukur Tanjimul Ummah Dakil Madrasha</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap');
+
+:root{
+    --primary:#6366f1;
+    --secondary:#8b5cf6;
+    --cyan:#06b6d4;
+    --pink:#ec4899;
+    --bg:#f4f6ff;
+    --card:rgba(255,255,255,.88);
+    --text:#172033;
+    --muted:#7b8194;
+    --border:#e7e9f3;
+    --shadow:0 15px 40px rgba(50,50,100,.10);
+}
+
+body.dark{
+    --bg:#0f172a;
+    --card:rgba(30,41,59,.92);
+    --text:#f8fafc;
+    --muted:#aeb7c7;
+    --border:#334155;
+    --shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins','Noto Serif Bengali',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+    transition:.4s;
+}
+
+.bg-circle{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.20;
+    pointer-events:none;
+    z-index:-1;
+    animation:moveCircle 12s infinite alternate ease-in-out;
+}
+
+.circle1{
+    background:#6366f1;
+    top:5%;
+    left:-100px;
+}
+
+.circle2{
+    background:#06b6d4;
+    right:-120px;
+    top:45%;
+    animation-delay:3s;
+}
+
+.circle3{
+    background:#ec4899;
+    left:35%;
+    bottom:-150px;
+    animation-delay:6s;
+}
+
+@keyframes moveCircle{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(60px,-40px) scale(1.15);}
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:260px;
+    height:100vh;
+    padding:25px 15px;
+    background:linear-gradient(160deg,#312e81,#4f46e5,#7c3aed);
+    color:white;
+    z-index:1000;
+    box-shadow:10px 0 40px rgba(0,0,0,.15);
+    transition:.4s;
+}
+
+.logo-box{
+    text-align:center;
+    padding:10px;
+    margin-bottom:25px;
+}
+
+.logo{
+    width:75px;
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    border-radius:50%;
+    background:rgba(255,255,255,.16);
+    border:2px solid rgba(255,255,255,.45);
+    backdrop-filter:blur(10px);
+    font-size:28px;
+    font-weight:800;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.logo-box h2{
+    margin-top:12px;
+    font-size:16px;
+}
+
+.logo-box p{
+    font-size:11px;
+    opacity:.8;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.nav button{
+    width:100%;
+    border:none;
+    padding:13px 15px;
+    border-radius:13px;
+    color:white;
+    background:transparent;
+    text-align:left;
+    font-family:inherit;
+    font-size:14px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav button:hover,
+.nav button.active{
+    background:rgba(255,255,255,.18);
+    transform:translateX(5px);
+}
+
+.nav-icon{
+    margin-right:10px;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:260px;
+    min-height:100vh;
+    padding:25px 30px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    font-size:25px;
+}
+
+.welcome p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:3px;
+}
+
+.top-actions{
+    display:flex;
+    gap:10px;
+}
+
+.icon-btn{
+    width:43px;
+    height:43px;
+    border:none;
+    border-radius:13px;
+    background:var(--card);
+    color:var(--text);
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    font-size:19px;
+    transition:.3s;
+}
+
+.icon-btn:hover{
+    transform:translateY(-3px) rotate(5deg);
+}
+
+/* PAGES */
+
+.page{
+    display:none;
+    animation:pageIn .5s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* STAT CARDS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.stat{
+    position:relative;
+    overflow:hidden;
+    padding:22px;
+    border-radius:22px;
+    color:white;
+    box-shadow:var(--shadow);
+    transition:.35s;
+}
+
+.stat:hover{
+    transform:translateY(-7px) scale(1.02);
+}
+
+.stat:nth-child(1){
+    background:linear-gradient(135deg,#4f46e5,#6366f1);
+}
+
+.stat:nth-child(2){
+    background:linear-gradient(135deg,#0891b2,#06b6d4);
+}
+
+.stat:nth-child(3){
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+}
+
+.stat:nth-child(4){
+    background:linear-gradient(135deg,#db2777,#ec4899);
+}
+
+.stat-icon{
+    font-size:28px;
+}
+
+.stat h2{
+    margin-top:5px;
+    font-size:30px;
+}
+
+.stat p{
+    opacity:.85;
+    font-size:13px;
+}
+
+/* CARD */
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(15px);
+    border-radius:22px;
+    padding:25px;
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.card-title h2{
+    font-size:20px;
+}
+
+.badge{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:11px;
+    color:#4f46e5;
+    background:#eef2ff;
+}
+
+/* QUICK */
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.quick{
+    padding:20px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#eef2ff,#f8faff);
+    border:1px solid #e3e7ff;
+    cursor:pointer;
+    transition:.35s;
+}
+
+body.dark .quick{
+    background:#1e293b;
+    border-color:#334155;
+}
+
+.quick:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 30px rgba(79,70,229,.13);
+}
+
+.quick-icon{
+    font-size:30px;
+}
+
+.quick h3{
+    margin-top:10px;
+    font-size:16px;
+}
+
+.quick p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* TEACHERS */
+
+.teacher-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:15px;
+}
+
+.teacher{
+    padding:18px;
+    border-radius:17px;
+    background:linear-gradient(135deg,#eef2ff,#ffffff);
+    border:1px solid var(--border);
+    transition:.35s;
+}
+
+body.dark .teacher{
+    background:#1e293b;
+}
+
+.teacher:hover{
+    transform:translateY(-5px);
+}
+
+.teacher strong{
+    display:block;
+    color:#6366f1;
+    margin-bottom:5px;
+}
+
+/* SUBJECT */
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:14px;
+}
+
+.subject{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-height:60px;
+    padding:12px;
+    border-radius:16px;
+    background:var(--card);
+    border:1px solid var(--border);
+    transition:.35s;
+}
+
+.subject:hover{
+    transform:translateY(-5px) scale(1.02);
+    border-color:#818cf8;
+}
+
+.subject-num{
+    width:35px;
+    height:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    border-radius:11px;
+    color:white;
+    font-size:12px;
+    font-weight:700;
+    background:linear-gradient(135deg,#4f46e5,#8b5cf6);
+}
+
+/* SEARCH */
+
+.search{
+    width:100%;
+    padding:14px 18px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    outline:none;
+    background:var(--card);
+    color:var(--text);
+    font-family:inherit;
+    margin-bottom:18px;
+}
+
+.search:focus{
+    border-color:#6366f1;
+    box-shadow:0 0 0 4px rgba(99,102,241,.10);
+}
+
+/* STUDENTS */
+
+.student-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+    gap:15px;
+}
+
+.student{
+    padding:18px;
+    border-radius:19px;
+    background:var(--card);
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:.35s;
+}
+
+.student:hover{
+    transform:translateY(-7px);
+    border-color:#818cf8;
+    box-shadow:0 15px 35px rgba(79,70,229,.14);
+}
+
+.student-avatar{
+    width:50px;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    color:white;
+    font-weight:700;
+    background:linear-gradient(135deg,#6366f1,#06b6d4);
+    margin-bottom:12px;
+}
+
+.student .roll{
+    color:#6366f1;
+    font-size:11px;
+}
+
+.student h3{
+    margin-top:5px;
+    font-size:16px;
+}
+
+.student small{
+    color:var(--muted);
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+
+th,td{
+    padding:14px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+    font-size:13px;
+}
+
+th{
+    color:#6366f1;
+}
+
+tr{
+    transition:.25s;
+}
+
+tr:hover{
+    background:rgba(99,102,241,.05);
+}
+
+/* ROUTINE */
+
+.day-title{
+    color:#6366f1;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+/* RESULT */
+
+.result-card{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.result-box{
+    padding:20px;
+    border-radius:18px;
+    text-align:center;
+    background:linear-gradient(135deg,#eef2ff,#f8faff);
+}
+
+body.dark .result-box{
+    background:#1e293b;
+}
+
+.result-box h3{
+    font-size:28px;
+    color:#6366f1;
+}
+
+.result-box p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* ATTENDANCE */
+
+.attendance-good{
+    color:#16a34a;
+    font-weight:700;
+}
+
+.attendance-empty{
+    color:#f59e0b;
+    font-weight:700;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(15,23,42,.72);
+    backdrop-filter:blur(8px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.profile-box{
+    width:100%;
+    max-width:500px;
+    background:var(--card);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);
+    animation:profileIn .45s cubic-bezier(.17,.67,.35,1.3);
+}
+
+@keyframes profileIn{
+    from{
+        opacity:0;
+        transform:translateY(60px) scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.profile-head{
+    position:relative;
+    padding:35px 20px;
+    text-align:center;
+    color:white;
+    background:linear-gradient(135deg,#312e81,#4f46e5,#7c3aed,#06b6d4);
+    background-size:250% 250%;
+    animation:gradient 8s infinite;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.avatar-big{
+    width:100px;
+    height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    border-radius:50%;
+    color:#4f46e5;
+    background:white;
+    font-size:38px;
+    font-weight:800;
+    border:5px solid rgba(255,255,255,.4);
+}
+
+.profile-head h2{
+    margin-top:12px;
+}
+
+.profile-head p{
+    opacity:.85;
+    font-size:13px;
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:15px;
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+    color:white;
+    background:rgba(255,255,255,.15);
+    cursor:pointer;
+    font-size:22px;
+    transition:.3s;
+}
+
+.close:hover{
+    background:white;
+    color:#4f46e5;
+    transform:rotate(90deg);
+}
+
+.profile-body{
+    padding:25px;
+}
+
+.bio-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.bio-row:last-child{
+    border:none;
+}
+
+.bio-label{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.bio-value{
+    font-weight:600;
+    text-align:right;
+    font-size:13px;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    padding:25px 10px;
+    font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:75px;
+        padding:15px 8px;
+    }
+
+    .logo-box h2,
+    .logo-box p,
+    .nav-text{
+        display:none;
+    }
+
+    .logo{
+        width:55px;
+        height:55px;
+        font-size:20px;
+    }
+
+    .nav button{
+        text-align:center;
+        padding:13px 5px;
+    }
+
+    .nav-icon{
+        margin:0;
+        font-size:20px;
+    }
+
+    .main{
+        margin-left:75px;
+        padding:20px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .main{
+        margin-left:0;
+        padding:15px;
+    }
+
+    .sidebar{
+        position:fixed;
+        top:auto;
+        bottom:0;
+        left:0;
+        width:100%;
+        height:65px;
+        padding:5px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:20px 20px 0 0;
+    }
+
+    .logo-box{
+        display:none;
+    }
+
+    .nav{
+        width:100%;
+        flex-direction:row;
+        justify-content:space-around;
+    }
+
+    .nav button{
+        width:auto;
+        padding:10px;
+    }
+
+    .main{
+        padding-bottom:85px;
+    }
+
+    .topbar{
+        align-items:flex-start;
+    }
+
+    .welcome h1{
+        font-size:19px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .stat{
+        padding:17px;
+    }
+
+    .stat h2{
+        font-size:24px;
+    }
+
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+    .result-card{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .student-grid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .student{
+        padding:13px;
+    }
+}
+
+@media print{
+
+    .sidebar,
+    .top-actions{
+        display:none;
+    }
+
+    .main{
+        margin:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-circle circle1"></div>
+<div class="bg-circle circle2"></div>
+<div class="bg-circle circle3"></div>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<div class="logo-box">
+    <div class="logo">S8</div>
+    <h2>Class 8</h2>
+    <p>Student Portal</p>
+</div>
+
+<nav class="nav">
+
+<button class="active" onclick="showPage('home',this)">
+<span class="nav-icon">🏠</span>
+<span class="nav-text">Dashboard</span>
+</button>
+
+<button onclick="showPage('students',this)">
+<span class="nav-icon">👨‍🎓</span>
+<span class="nav-text">Students</span>
+</button>
+
+<button onclick="showPage('teachers',this)">
+<span class="nav-icon">👨‍🏫</span>
+<span class="nav-text">Teachers</span>
+</button>
+
+<button onclick="showPage('subjects',this)">
+<span class="nav-icon">📚</span>
+<span class="nav-text">Subjects</span>
+</button>
+
+<button onclick="showPage('routine',this)">
+<span class="nav-icon">🗓️</span>
+<span class="nav-text">Routine</span>
+</button>
+
+<button onclick="showPage('results',this)">
+<span class="nav-icon">📝</span>
+<span class="nav-text">Results</span>
+</button>
+
+<button onclick="showPage('attendance',this)">
+<span class="nav-icon">📊</span>
+<span class="nav-text">Attendance</span>
+</button>
+
+</nav>
+</aside>
+
+<!-- MAIN -->
+
+<main class="main">
+
+<div class="topbar">
+
+<div class="welcome">
+<h1>Class 8 Dashboard 👋</h1>
+<p>Shinepukur Tanjimul Ummah Dakil Madrasha • Academic Year 2026</p>
+</div>
+
+<div class="top-actions">
+<button class="icon-btn" onclick="toggleDark()" id="themeBtn">🌙</button>
+</div>
+
+</div>
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-icon">👨‍🎓</div>
+<h2>28</h2>
+<p>Total Students</p>
+</div>
+
+<div class="stat">
+<div class="stat-icon">👨‍🏫</div>
+<h2>8</h2>
+<p>Teachers</p>
+</div>
+
+<div class="stat">
+<div class="stat-icon">📚</div>
+<h2>14</h2>
+<p>Subjects</p>
+</div>
+
+<div class="stat">
+<div class="stat-icon">📅</div>
+<h2>2026</h2>
+<p>Academic Year</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">
+<h2>Students information</h2>
+<span class="badge">Class 8</span>
+</div>
+
+<div class="quick-grid">
+
+<div class="quick" onclick="goTo('students',1)">
+<div class="quick-icon">👨‍🎓</div>
+<h3>Students</h3>
+<p>View all 28 student rolls</p>
+</div>
+
+<div class="quick" onclick="goTo('teachers',2)">
+<div class="quick-icon">👨‍🏫</div>
+<h3>Teachers</h3>
+<p>View class teachers</p>
+</div>
+
+<div class="quick" onclick="goTo('subjects',3)">
+<div class="quick-icon">📚</div>
+<h3>Subjects</h3>
+<p>View all 14 subjects</p>
+</div>
+
+<div class="quick" onclick="goTo('routine',4)">
+<div class="quick-icon">🗓️</div>
+<h3>Class Routine</h3>
+<p>View weekly routine</p>
+</div>
+
+<div class="quick" onclick="goTo('results',5)">
+<div class="quick-icon">📝</div>
+<h3>Results</h3>
+<p>Academic result information</p>
+</div>
+
+<div class="quick" onclick="goTo('attendance',6)">
+<div class="quick-icon">📊</div>
+<h3>Attendance</h3>
+<p>Student attendance overview</p>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+
+<div class="card-title">
+<h2>🏫 Madrasha Information</h2>
+<span class="badge">2026</span>
+</div>
+
+<div class="teacher-grid">
+
+<div class="teacher">
+<strong>Class</strong>
+Class 8
+</div>
+
+<div class="teacher">
+<strong>Total Students</strong>
+28 Students
+</div>
+
+<div class="teacher">
+<strong>Academic Year</strong>
+2026
+</div>
+
+<div class="teacher">
+<strong>Institution</strong>
+Shinepukur Tanjimul Ummah Dakil Madrasha
+</div>
+
+</div>
+</div>
+
+</section>
+
+<!-- STUDENTS -->
+
+<section id="students" class="page">
+
+<div class="card">
+
+<div class="card-title">
+<h2>👨‍🎓 Class 8 Students</h2>
+<span class="badge">28 Students</span>
+</div>
+
+<input
+type="text"
+id="studentSearch"
+class="search"
+placeholder="🔍 Search student by name or roll..."
+onkeyup="searchStudents()"
+>
+
+<div class="student-grid" id="studentList"></div>
+
+</div>
+</section>
+
+<!-- TEACHERS -->
+
+<section id="teachers" class="page">
+
+<div class="card">
+
+<div class="card-title">
+<h2>👨‍🏫 Teachers</h2>
+<span class="badge">8 Teachers</span>
+</div>
+
+<div class="teacher-grid">
+
+<div class="teacher">
+<strong>Class Teacher</strong>
+Robiul awal
+</div>
+
+<div class="teacher">
+<strong>Math Teacher</strong>
+Robiul awal
+</div>
+
+<div class="teacher">
+<strong>Science Teacher</strong>
+Rabika Madam
+</div>
+
+<div class="teacher">
+<strong>Arabic Teacher</strong>
+Ibrahim
+</div>
+
+<div class="teacher">
+<strong>Bangla Teacher</strong>
+Robiul awal
+</div>
+
+<div class="teacher">
+<strong>English Teacher</strong>
+Al Amin
+</div>
+
+<div class="teacher">
+<strong>Quran Teacher</strong>
+Halal
+</div>
+
+<div class="teacher">
+<strong>BGS Teacher</strong>
+Rabika Madam
+</div>
+
+</div>
+</div>
+
+</section>
+
+<!-- SUBJECTS -->
+
+<section id="subjects" class="page">
+
+<div class="card">
+
+<div class="card-title">
+<h2>📚 Class 8 Subjects</h2>
+<span class="badge">14 Subjects</span>
+</div>
+
+<div class="subject-grid" id="subjectList"></div>
+
+</div>
+
+</section>
+
+<!-- ROUTINE -->
+
+<section id="routine" class="page">
+
+<div class="card">
+
+<div class="card-title">
+<h2>🗓️ Class Routine</h2>
+<span class="badge">Class 8</span>
+</div>
+
+<p style="color:var(--muted);margin-bottom:20px;">
+Routine information has not been provided yet.
+</p>
+
+<div class="table-wrap">
+
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Period 1</th>
+<th>Period 2</th>
+<th>Period 3</th>
+<th>Period 4</th>
+<th>Period 5</th>
+<th>Period 6</th>
+<th>Period 7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Saturday</td>
+<td>English</td>
+<td>Arabic</td>
+<td>Math</td>
+<td>No Class</td>
+<td>No Class</td>
+<td>No Class</td>
+<td>No Class</td>
+</tr>
+
+<tr>
+<td>Sunday</td>
+<td>Math</td>
+<td>Scince</td>
+<td>Arabic</td>
+<td>Bangla 1st</td>
+<td>English</td>
+<td>Quran</td>
+<td>BGS</td>
+</tr>
+
+<tr>
+<td>Monday</td>
+<td>Math</td>
+<td>Scince</td>
+<td>Arabic</td>
+<td>Bangla 1st</td>
+<td>English</td>
+<td>Quran</td>
+<td>BGS</td>
+</tr>
+
+<tr>
+<td>Tuesday</td>
+<td>Math</td>
+<td>Scince</td>
+<td>Arabic</td>
+<td>Bangla 1st</td>
+<td>English</td>
+<td>Quran</td>
+<td>BGS</td>
+</tr>
+
+<tr>
+<td>Wednesday</td>
+<td>Math</td>
+<td>Scince</td>
+<td>Arabic</td>
+<td>Bangla 2nd</td>
+<td>English</td>
+<td>Akaid</td>
+<td>BGS</td>
+</tr>
+
+<tr>
+<td>Thursday</td>
+<td>ICT</td>
+<td>Scince</td>
+<td>Arabic</td>
+<td>Bangla 2nd</td>
+<td>English</td>
+<td>Akaid</td>
+<td>BGS</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+
+</section>
+
+<!-- RESULTS -->
+
+<section id="results" class="page">
+
+<div class="card">
+
+<div class="card-title">
+<h2>📝 Academic Results</h2>
+<span class="badge">2026</span>
+</div>
+
+<div class="result-card">
+
+<div class="result-box">
+<h3>28</h3>
+<p>Total Students</p>
+</div>
+
+<div class="result-box">
+<h3>14</h3>
+<p>Total Subjects</p>
+</div>
+
+<div class="result-box">
+<h3>—</h3>
+<p>Result Status</p>
+</div>
+
+</div>
+
+<br>
+
+<p style="color:var(--muted);">
+Student-wise marks/results have not been provided yet.
+</p>
+
+</div>
+
+</section>
+
+<!-- ATTENDANCE -->
+
+<section id="attendance" class="page">
+
+<div class="card">
+
+<div class="card-title">
+<h2>📊 Attendance</h2>
+<span class="badge">Class 8</span>
+</div>
+
+<div class="result-card">
+
+<div class="result-box">
+<h3>28</h3>
+<p>Total Students</p>
+</div>
+
+<div class="result-box">
+<h3>—</h3>
+<p>Present</p>
+</div>
+
+<div class="result-box">
+<h3>—</h3>
+<p>Absent</p>
+</div>
+
+</div>
+
+<br>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Roll</th>
+<th>Student</th>
+<th>Attendance</th>
+</tr>
+</thead>
+
+<tbody id="attendanceList"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="footer">
+© 2026 Shinepukur Tanjimul Ummah Dakil Madrasha • Class 8 Student Portal
+</div>
+
+</main>
+
+<!-- STUDENT MODAL -->
+
+<div class="modal" id="studentModal">
+
+<div class="profile-box">
+
+<div class="profile-head">
+
+<button class="close" onclick="closeModal()">×</button>
+
+<div class="avatar-big" id="modalAvatar">A</div>
+
+<h2 id="modalName">Student</h2>
+
+<p id="modalRoll">Roll 1</p>
+
+</div>
+
+<div class="profile-body">
+
+<div class="bio-row">
+<span class="bio-label">Roll</span>
+<span class="bio-value" id="modalRoll2"></span>
+</div>
+
+<div class="bio-row">
+<span class="bio-label">Class</span>
+<span class="bio-value">Class 8</span>
+</div>
+
+<div class="bio-row">
+<span class="bio-label">Academic Year</span>
+<span class="bio-value">2026</span>
+</div>
+
+<div class="bio-row">
+<span class="bio-label">Institution</span>
+<span class="bio-value">Shinepukur Tanjimul Ummah Dakil Madrasha</span>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+/* ================================
+   STUDENT DATA
+================================ */
+
+const students = [
+    {roll:1,name:"Afia"},
+    {roll:2,name:""},
+    {roll:3,name:"Mahmuda"},
+    {roll:4,name:""},
+    {roll:5,name:""},
+    {roll:6,name:""},
+    {roll:7,name:""},
+    {roll:8,name:"Yeasin Tamim"},
+    {roll:9,name:"Yeasin Alif"},
+    {roll:10,name:"Kawsar"},
+    {roll:11,name:"Solaiman"},
+    {roll:12,name:""},
+    {roll:13,name:""},
+    {roll:14,name:""},
+    {roll:15,name:""},
+    {roll:16,name:"Sahinur"},
+    {roll:17,name:"Yeamoni"},
+    {roll:18,name:"Osman"},
+    {roll:19,name:""},
+    {roll:20,name:""},
+    {roll:21,name:""},
+    {roll:22,name:""},
+    {roll:23,name:"Sabbir"},
+    {roll:24,name:""},
+    {roll:25,name:""},
+    {roll:26,name:""},
+    {roll:27,name:"Abir"},
+    {roll:28,name:"Moaz"}
+];
+
+
+/* ================================
+   SUBJECT DATA
+================================ */
+
+const subjects = [
+    "গণিত",
+    "বিজ্ঞান",
+    "ICT",
+    "সিরাত",
+    "আরবি ১ম",
+    "আরবি ২য়",
+    "বাংলা ১ম",
+    "বাংলা ২য়",
+    "English 1st",
+    "English 2nd",
+    "কুরআন",
+    "আকাইদ",
+    "বাংলাদেশ ও বিশ্বপরিচয়",
+    "সাধারণ জ্ঞান"
+];
+
+
+/* ================================
+   SHOW PAGE
+================================ */
+
+function showPage(pageId, button){
+
+    document.querySelectorAll(".page")
+        .forEach(page => page.classList.remove("active"));
+
+    const page = document.getElementById(pageId);
+
+    if(page){
+        page.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    if(button){
+        button.classList.add("active");
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* ================================
+   QUICK ACCESS
+================================ */
+
+function goTo(page,index){
+
+    const buttons =
+        document.querySelectorAll(".nav button");
+
+    showPage(page,buttons[index]);
+
+}
+
+
+/* ================================
+   RENDER STUDENTS
+================================ */
+
+function renderStudents(list = students){
+
+    const container =
+        document.getElementById("studentList");
+
+    container.innerHTML = "";
+
+    list.forEach(student => {
+
+        const name =
+            student.name || "Name Not Added";
+
+        const avatar =
+            student.name
+            ? student.name.charAt(0).toUpperCase()
+            : "?";
+
+        const card =
+            document.createElement("div");
+
+        card.className = "student";
+
+        card.onclick = () =>
+            openStudent(student);
+
+        card.innerHTML = `
+
+            <div class="student-avatar">
+                ${avatar}
+            </div>
+
+            <div class="roll">
+                Roll No. ${student.roll}
+            </div>
+
+            <h3>${name}</h3>
+
+            <small>
+                Class 8 • 2026
+            </small>
+        `;
+
+        container.appendChild(card);
+
+    });
+}
+
+
+/* ================================
+   SEARCH STUDENTS
+================================ */
+
+function searchStudents(){
+
+    const query =
+        document
+        .getElementById("studentSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const filtered =
+        students.filter(student => {
+
+            const name =
+                student.name.toLowerCase();
+
+            return (
+                name.includes(query) ||
+                String(student.roll).includes(query)
+            );
+
+        });
+
+    renderStudents(filtered);
+}
+
+
+/* ================================
+   RENDER SUBJECTS
+================================ */
+
+function renderSubjects(){
+
+    const container =
+        document.getElementById("subjectList");
+
+    container.innerHTML = "";
+
+    subjects.forEach((subject,index) => {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "subject";
+
+        div.innerHTML = `
+
+            <div class="subject-num">
+                ${index + 1}
+            </div>
+
+            <strong>
+                ${subject}
+            </strong>
+        `;
+
+        container.appendChild(div);
+
+    });
+}
+
+
+/* ================================
+   ATTENDANCE
+================================ */
+
+function renderAttendance(){
+
+    const container =
+        document.getElementById("attendanceList");
+
+    container.innerHTML = "";
+
+    students.forEach(student => {
+
+        const row =
+            document.createElement("tr");
+
+        row.innerHTML = `
+
+            <td>${student.roll}</td>
+
+            <td>
+                ${student.name || "Name Not Added"}
+            </td>
+
+            <td class="attendance-empty">
+                Not Added
+            </td>
+        `;
+
+        container.appendChild(row);
+
+    });
+}
+
+
+/* ================================
+   STUDENT MODAL
+================================ */
+
+function openStudent(student){
+
+    const name =
+        student.name || "Name Not Added";
+
+    const avatar =
+        student.name
+        ? student.name.charAt(0).toUpperCase()
+        : "?";
+
+    document.getElementById("modalAvatar")
+        .textContent = avatar;
+
+    document.getElementById("modalName")
+        .textContent = name;
+
+    document.getElementById("modalRoll")
+        .textContent =
+        "Roll No. " + student.roll;
+
+    document.getElementById("modalRoll2")
+        .textContent =
+        student.roll;
+
+    document.getElementById("studentModal")
+        .classList.add("show");
+}
+
+
+function closeModal(){
+
+    document.getElementById("studentModal")
+        .classList.remove("show");
+
+}
+
+
+document.getElementById("studentModal")
+    .addEventListener("click",function(e){
+
+        if(e.target === this){
+            closeModal();
+        }
+
+    });
+
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Escape"){
+        closeModal();
+    }
+
+});
+
+
+/* ================================
+   DARK MODE
+================================ */
+
+function toggleDark(){
+
+    document.body.classList.toggle("dark");
+
+    const btn =
+        document.getElementById("themeBtn");
+
+    if(document.body.classList.contains("dark")){
+
+        btn.textContent = "☀️";
+
+        localStorage.setItem(
+            "class8-theme",
+            "dark"
+        );
+
+    }else{
+
+        btn.textContent = "🌙";
+
+        localStorage.setItem(
+            "class8-theme",
+            "light"
+        );
+
+    }
+
+}
+
+
+/* ================================
+   LOAD SAVED THEME
+================================ */
+
+if(localStorage.getItem("class8-theme") === "dark"){
+
+    document.body.classList.add("dark");
+
+    document.getElementById("themeBtn")
+        .textContent = "☀️";
+
+}
+
+
+/* ================================
+   INITIAL LOAD
+================================ */
+
+renderStudents();
+renderSubjects();
+renderAttendance();
+
+</script>
+
+</body>
+</html>
